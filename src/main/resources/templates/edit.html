@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<a class="btn btn-primary"  th:href="@{/home}">Quay lại trang chủ</a>
+<form th:action="@{/home/edit}" th:object="${city}" method="post">
+  <table>
+    <td><input type="text" hidden th:field="*{id}"/></td>
+    <tr>
+      <td>Tên:</td>
+      <td><input type="text" th:field="*{name}"/></td>
+      <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+    </tr>
+    <tr>
+      <td>diện tích:</td>
+      <td><input type="text" th:field="*{acreage}"/></td>
+      <td th:if="${#fields.hasErrors('acreage')}" th:errors="*{acreage}">Name Error</td>
+    </tr>
+    <tr>
+      <td>giới thiệu:</td>
+      <td><input type="text" th:field="*{description}"/></td>
+    </tr>
+    <tr>
+      <td>gdp:</td>
+      <td><input type="text" th:field="*{gdp}"/></td>
+      <td th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}">Name Error</td>
+    </tr>
+    <tr>
+      <td>Tổng dân số:</td>
+      <td><input type="text" th:field="*{population}"/></td>
+      <td th:if="${#fields.hasErrors('population')}" th:errors="*{population}">Name Error</td>
+    </tr>
+    <tr>
+      <td>Thuộc quốc gia:</td>
+      <td>
+        <select th:field="*{country}">
+          <option th:each="c : ${countries}" th:value="${c.id}" th:text="${c.name}"></option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input class="btn btn-outline-warning" type="submit" value="Xác nhận sửa"></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
